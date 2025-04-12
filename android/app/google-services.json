@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "853141492555",
+    "project_id": "timefood-b2280",
+    "storage_bucket": "timefood-b2280.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853141492555:android:c5df1dffd2485e97754ece",
+        "android_client_info": {
+          "package_name": "com.timefood.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuu26veSb8e7gYEy7y9Tq-m7ercNLBO5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

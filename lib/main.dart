@@ -1,12 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:time_food/Features/Auth/Cubit/auth_cubit.dart';
+import 'package:time_food/Features/Layout/Cubit/layout_cubit.dart';
+import 'package:time_food/Features/Profile/Cubit/account_cubit.dart';
 import 'package:time_food/firebase_options.dart';
 import 'package:time_food/routing/router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'Core/Helper/cache_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +25,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => AuthCubit(),
-        ),
+        BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => AccountCubit()),
+        BlocProvider(create: (context) => LayoutCubit()),
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

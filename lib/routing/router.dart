@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:time_food/Features/Auth/View/Screens/login_screen.dart';
 import 'package:time_food/Features/Auth/View/Screens/splash_screen.dart';
+import 'package:time_food/Features/Layout/View/layout_screen.dart';
 import 'package:time_food/routing/routes.dart';
+
+import '../Features/Home/View/product_screen.dart';
 
 class CustomRouter {
   static final rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -13,7 +16,7 @@ class CustomRouter {
   );
 
   static GoRouter get router => _router;
-  static final List<GoRoute> _routes = [splashScreen, loginScreen];
+  static final List<GoRoute> _routes = [splashScreen, loginScreen,layoutScreen,productScreen];
 
   static final splashScreen = GoRoute(
     path: Routes.splashScreen.path,
@@ -27,6 +30,21 @@ class CustomRouter {
     name: Routes.loginScreen.name,
     builder: (context, state) {
       return LoginScreen();
+    },
+  );
+  static final layoutScreen = GoRoute(
+    path: Routes.layoutScreen.path,
+    name: Routes.layoutScreen.name,
+    builder: (context, state) {
+      return LayoutScreen();
+    },
+  );
+
+  static final productScreen = GoRoute(
+    path: Routes.productScreen.path,
+    name: Routes.productScreen.name,
+    builder: (context, state) {
+      return ProductEditorScreen();
     },
   );
 }

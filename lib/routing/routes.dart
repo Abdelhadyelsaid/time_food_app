@@ -14,4 +14,12 @@ class Routes {
     name: "loginScreen",
     path: "/loginScreen",
   );
+  static final Route layoutScreen = Route(
+    name: "layoutScreen",
+    path: "/layoutScreen",
+  );
+  static final Route productScreen = Route(
+    name: "productScreen",
+    path: "/productScreen",
+  );
 }

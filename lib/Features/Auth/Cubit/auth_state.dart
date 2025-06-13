@@ -7,8 +7,16 @@ final class AuthInitial extends AuthState {}
 
 final class GoogleFirebaseLoadingState extends AuthState {}
 
+final class GoogleFirebaseSuccessState extends AuthState {}
+
+final class GoogleFirebaseErrorState extends AuthState {
+  final String message;
+
+  GoogleFirebaseErrorState(this.message);
+}
+
 class LoginErrorState extends AuthState {
-  String message;
+  final String message;
 
   LoginErrorState(this.message);
 }

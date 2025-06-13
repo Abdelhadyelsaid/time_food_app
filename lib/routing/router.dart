@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:time_food/Features/Auth/View/Screens/login_screen.dart';
+import 'package:time_food/Features/Auth/View/Screens/register_screen.dart';
 import 'package:time_food/Features/Auth/View/Screens/splash_screen.dart';
+import 'package:time_food/Features/Home/View/add_product_screen.dart';
+import 'package:time_food/Features/Home/View/product_details_screen.dart';
 import 'package:time_food/Features/Layout/View/layout_screen.dart';
 import 'package:time_food/routing/routes.dart';
 
@@ -16,7 +19,7 @@ class CustomRouter {
   );
 
   static GoRouter get router => _router;
-  static final List<GoRoute> _routes = [splashScreen, loginScreen,layoutScreen,productScreen];
+  static final List<GoRoute> _routes = [splashScreen, loginScreen,layoutScreen,productScreen,productDetailsScreen,addProductScreen,registercreen];
 
   static final splashScreen = GoRoute(
     path: Routes.splashScreen.path,
@@ -45,6 +48,27 @@ class CustomRouter {
     name: Routes.productScreen.name,
     builder: (context, state) {
       return ProductEditorScreen();
+    },
+  );
+  static final productDetailsScreen = GoRoute(
+    path: Routes.productDetailsScreen.path,
+    name: Routes.productDetailsScreen.name,
+    builder: (context, state) {
+      return ProductDetailsScreen();
+    },
+  );
+  static final addProductScreen = GoRoute(
+    path: Routes.addProductScreen.path,
+    name: Routes.addProductScreen.name,
+    builder: (context, state) {
+      return AddProductScreen();
+    },
+  );
+  static final registercreen = GoRoute(
+    path: Routes.registercreen.path,
+    name: Routes.registercreen.name,
+    builder: (context, state) {
+      return RegisterScreen();
     },
   );
 }

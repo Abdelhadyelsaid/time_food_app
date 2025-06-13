@@ -9,6 +9,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 
 import '../../../Core/Helper/cache_helper.dart';
+
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -17,14 +18,14 @@ class AuthCubit extends Cubit<AuthState> {
   static AuthCubit get(context) => BlocProvider.of(context);
 
   ///**************************** Login ******************///
-  TextEditingController loginPhoneController = TextEditingController();
+  TextEditingController loginEmailController = TextEditingController();
   TextEditingController loginPasswordController = TextEditingController();
 
   ///**************************** SignUp ******************///
   TextEditingController signupPhoneController = TextEditingController();
   TextEditingController signupPasswordController = TextEditingController();
   TextEditingController signupConfirmPasswordController =
-  TextEditingController();
+      TextEditingController();
   TextEditingController signupFirstNameController = TextEditingController();
   TextEditingController signupLastNameController = TextEditingController();
   TextEditingController signupEmailController = TextEditingController();
@@ -58,25 +59,34 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  Future<void> signUp(String email, String phoneNumber, String name,
-      String password, String last_name) async {
+  Future<void> signUp(
+    String email,
+    String phoneNumber,
+    String name,
+    String password,
+    String state,
+    String age,
+    String gender,
+  ) async {
     try {
       emit(SignUpLoadingState());
-      UserCredential userCredential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email.trim(),
-        password: password.trim(),
-      );
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: email.trim(),
+            password: password.trim(),
+          );
       await FirebaseFirestore.instance
           .collection('users')
           .doc(userCredential.user!.uid)
           .set({
-        'email': email.trim(),
-        'first_name': name.trim(),
-        'last_name': last_name.trim(),
-        'phone_number': phoneNumber.trim(),
-        'createdAt': Timestamp.now(),
-      });
+            'email': email.trim(),
+            'username': name.trim(),
+            'phone_number': phoneNumber.trim(),
+            'state': state.trim(),
+            'age': age.trim(),
+            'gender': gender.trim(),
+            'createdAt': Timestamp.now(),
+          });
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       log(e.toString());
@@ -90,18 +100,21 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(LoginLoadingState());
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email.trim(), password: password.trim());
+        email: email.trim(),
+        password: password.trim(),
+      );
       if (user != null) {
         var token = await user!.getIdToken();
         CacheHelper.saveData(key: "token", value: token);
         log("This is firebase token:$token");
       }
       emit(LoginSuccessState());
-    }on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       log(e.toString());
       emit(LoginErrorState(e.toString()));
     }
   }
+
   sendForgetPasswordRequest() async {
     try {
       emit(SendForgetPasswordRequestLoadingState());
@@ -122,7 +135,7 @@ class AuthCubit extends Cubit<AuthState> {
         email: forgetPasswordEmailController.text.trim(),
       );
       emit(ReSendForgetPasswordRequestSuccessState());
-    }on FirebaseAuthException catch (E) {
+    } on FirebaseAuthException catch (E) {
       log(E.toString());
       emit(ReSendForgetPasswordRequestErrorState());
     }
@@ -138,7 +151,7 @@ class AuthCubit extends Cubit<AuthState> {
         return null;
       }
       final GoogleSignInAuthentication googleAuth =
-      await googleUser.authentication;
+          await googleUser.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -147,15 +160,17 @@ class AuthCubit extends Cubit<AuthState> {
 
       log("This is loadd******************************");
       emit(GoogleFirebaseLoadingState());
-      UserCredential userCredential =
-      await auth.signInWithCredential(credential);
+      UserCredential userCredential = await auth.signInWithCredential(
+        credential,
+      );
       var firebaseToken = await userCredential.user!.getIdToken();
       log("This is firebaseToken:${firebaseToken}");
+      emit(GoogleFirebaseSuccessState());
       return userCredential;
     } catch (e) {
+      emit(GoogleFirebaseErrorState(e.toString()));
       log("Error during Google Sign-In: ${e.toString()}");
     }
     return null;
   }
-
 }

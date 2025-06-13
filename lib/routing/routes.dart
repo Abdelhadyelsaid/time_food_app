@@ -22,4 +22,17 @@ class Routes {
     name: "productScreen",
     path: "/productScreen",
   );
+  static final Route productDetailsScreen = Route(
+    name: "productDetailsScreen",
+    path: "/productDetailsScreen",
+  );
+  static final Route addProductScreen = Route(
+    name: "addProductScreen",
+    path: "/addProductScreen",
+  );
+  static final Route registercreen = Route(
+    name: "registercreen",
+    path: "/registercreen",
+  );
+
 }

@@ -41,7 +41,7 @@ class LayoutScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color:
                           layoutCubit.selectedIndex == 3
-                              ? cSecondaryColor.withOpacity(0.3)
+                              ? cPrimaryColor.withOpacity(0.3)
                               : Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -71,7 +71,7 @@ class LayoutScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color:
                           layoutCubit.selectedIndex == 2
-                              ? cSecondaryColor.withOpacity(0.3)
+                              ? cPrimaryColor.withOpacity(0.3)
                               : Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -101,7 +101,7 @@ class LayoutScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color:
                       layoutCubit.selectedIndex == 1
-                          ? cSecondaryColor.withOpacity(0.3)
+                          ? cPrimaryColor.withOpacity(0.3)
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -127,7 +127,7 @@ class LayoutScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color:
                           layoutCubit.selectedIndex == 0
-                              ? cSecondaryColor.withOpacity(0.3)
+                              ? cPrimaryColor.withOpacity(0.3)
                               : Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                     ),

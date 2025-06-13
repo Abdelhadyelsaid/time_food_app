@@ -58,7 +58,7 @@ class ImageGridScreen extends StatelessWidget {
               // Plus container
               return GestureDetector(
                 onTap: () {
-                  // Add your action here (e.g., open picker or dialog)
+                  context.pushNamed(Routes.addProductScreen.name);
                 },
                 child: Column(
                   children: [
@@ -85,7 +85,7 @@ class ImageGridScreen extends StatelessWidget {
             final item = items[index];
             return InkWell(
               onTap: () {
-                context.pushNamed(Routes.productScreen.name);
+                context.pushNamed(Routes.productDetailsScreen.name);
               },
               child: Column(
                 children: [

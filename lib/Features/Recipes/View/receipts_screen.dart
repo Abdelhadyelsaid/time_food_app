@@ -2,39 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:time_food/Core/Const/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:time_food/Core/Const/colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class YouTubeListScreen extends StatelessWidget {
   final List<Map<String, String>> items = [
     {
       'youtubeImage':
-          'https://housefood.africa/wp-content/uploads/2022/04/beef.webp',
+      'https://housefood.africa/wp-content/uploads/2022/04/beef.webp',
       'thumbnail': 'https://img.youtube.com/vi/VIDEO_ID/0.jpg',
-      'url': 'https://www.youtube.com/watch?v=VIDEO_ID',
+      'url': 'https://www.youtube.com/watch?v=TWpnohR6AoQ&ab_channel=FunKidsEnglish',
     },
     {
       'youtubeImage':
-          'https://housefood.africa/wp-content/uploads/2022/04/beef.webp',
+      'https://housefood.africa/wp-content/uploads/2022/04/beef.webp',
       'thumbnail': 'https://img.youtube.com/vi/VIDEO_ID/0.jpg',
-      'url': 'https://www.youtube.com/watch?v=VIDEO_ID',
+      'url': 'https://www.youtube.com/watch?v=TWpnohR6AoQ&ab_channel=FunKidsEnglish',
     },
     {
       'youtubeImage':
-          'https://housefood.africa/wp-content/uploads/2022/04/beef.webp',
+      'https://housefood.africa/wp-content/uploads/2022/04/beef.webp',
       'thumbnail': 'https://img.youtube.com/vi/VIDEO_ID/0.jpg',
-      'url': 'https://www.youtube.com/watch?v=VIDEO_ID',
+      'url': 'https://www.youtube.com/watch?v=TWpnohR6AoQ&ab_channel=FunKidsEnglish',
     },
     {
       'youtubeImage':
-          'https://housefood.africa/wp-content/uploads/2022/04/beef.webp',
+      'https://housefood.africa/wp-content/uploads/2022/04/beef.webp',
       'thumbnail': 'https://img.youtube.com/vi/VIDEO_ID/0.jpg',
-      'url': 'https://www.youtube.com/watch?v=VIDEO_ID',
+      'url': 'https://www.youtube.com/watch?v=TWpnohR6AoQ&ab_channel=FunKidsEnglish',
     },
   ];
 
-  void _openUrl(String url) async {
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
+  Future<void> _openUrl(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
       throw 'Could not launch $url';
     }
@@ -89,3 +93,4 @@ class YouTubeListScreen extends StatelessWidget {
     );
   }
 }
+

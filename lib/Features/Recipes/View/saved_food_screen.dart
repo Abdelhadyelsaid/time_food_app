@@ -1,7 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:time_food/Core/Const/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../routing/routes.dart';
 
 class SavedFoodScreen extends StatelessWidget {
   final List<Map<String, String>> items = [
@@ -56,7 +61,7 @@ class SavedFoodScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           final item = items[index];
           return InkWell(
-            onTap: () => _openUrl(item['url']!),
+            onTap: () {},
             child: Container(
               margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               padding: EdgeInsets.all(12),
@@ -66,9 +71,16 @@ class SavedFoodScreen extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.delete),
+                  InkWell(
+                    onTap: () {
+
+                    },
+                    child: Icon(Icons.delete),
+                  ),
                   SizedBox(width: 20.w),
-                  Icon(Icons.edit),
+                  InkWell(onTap: () {
+                    context.pushNamed(Routes.productScreen.name);
+                  }, child: Icon(Icons.edit)),
 
                   Spacer(),
                   Padding(

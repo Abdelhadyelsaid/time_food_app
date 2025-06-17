@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:time_food/Core/Const/AppUrl.dart';
 import 'package:time_food/Core/Const/colors.dart';
+import 'package:time_food/Features/Home/Models/products_model.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-   ProductDetailsScreen({super.key});
+  ProductDetailsScreen({super.key, required this.productDetails});
 
-  // Static data
-  final String imageUrl = "https://housefood.africa/wp-content/uploads/2022/04/beef.webp";
-  final int quantity = 5;
-  final DateTime productionDate = DateTime(2024, 12, 10);
-  final DateTime expiryDate = DateTime(2025, 6, 20);
-  final bool notifyBefore = true;
+  final Product productDetails;
 
   int get remainingDays {
-    return expiryDate.difference(DateTime.now()).inDays.clamp(0, double.infinity).toInt();
+    return productDetails.expirationDate!
+        .difference(DateTime.now())
+        .inDays
+        .clamp(0, double.infinity)
+        .toInt();
   }
 
   @override
@@ -29,7 +30,9 @@ class ProductDetailsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           elevation: 4,
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -38,13 +41,29 @@ class ProductDetailsScreen extends StatelessWidget {
               children: [
                 _buildImage(),
                 const SizedBox(height: 16),
-                _buildDetail(label: "الكمية", value: quantity.toString()),
+                _buildDetail(
+                  label: "الكمية",
+                  value: productDetails.quantity.toString(),
+                ),
                 const SizedBox(height: 16),
-                _buildDetail(label: "تاريخ الإنتاج", value: DateFormat('yyyy-MM-dd').format(productionDate)),
+                _buildDetail(
+                  label: "تاريخ الإنتاج",
+                  value: DateFormat(
+                    'yyyy-MM-dd',
+                  ).format(productDetails.startDate!),
+                ),
                 const SizedBox(height: 8),
-                _buildDetail(label: "تاريخ الانتهاء", value: DateFormat('yyyy-MM-dd').format(expiryDate)),
+                _buildDetail(
+                  label: "تاريخ الانتهاء",
+                  value: DateFormat(
+                    'yyyy-MM-dd',
+                  ).format(productDetails.expirationDate!),
+                ),
                 const SizedBox(height: 8),
-                _buildDetail(label: "إرسال تنبيه قبل الانتهاء", value: notifyBefore ? "نعم" : "لا"),
+                _buildDetail(
+                  label: "إرسال تنبيه قبل الانتهاء",
+                  value: productDetails.sendNotification! ? "نعم" : "لا",
+                ),
                 const SizedBox(height: 16),
                 Text(
                   "الأيام المتبقية: $remainingDays يوم",
@@ -65,7 +84,7 @@ class ProductDetailsScreen extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Image.network(
-        imageUrl,
+       "${AppUrls.baseUrl}uploads/1750196607216-767688307.jpeg"?? "",
         height: 200,
         width: double.infinity,
         fit: BoxFit.cover,

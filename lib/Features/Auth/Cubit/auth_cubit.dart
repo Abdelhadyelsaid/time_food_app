@@ -165,6 +165,7 @@ class AuthCubit extends Cubit<AuthState> {
       );
       var firebaseToken = await userCredential.user!.getIdToken();
       log("This is firebaseToken:${firebaseToken}");
+      CacheHelper.saveData(key: "token", value: firebaseToken);
       emit(GoogleFirebaseSuccessState());
       return userCredential;
     } catch (e) {

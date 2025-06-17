@@ -29,7 +29,7 @@ class LayoutScreen extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    if (CacheHelper.getData(key: "token") == null) {
+                    if (CacheHelper.getData(key: "token") != null) {
                       layoutCubit.changeIndex(3);
                     } else {
                       context.pushNamed(Routes.loginScreen.name);
@@ -59,7 +59,7 @@ class LayoutScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    if (CacheHelper.getData(key: "token") == null) {
+                    if (CacheHelper.getData(key: "token") != null) {
                       layoutCubit.changeIndex(2);
                     } else {
                       context.pushNamed(Routes.loginScreen.name);
@@ -89,7 +89,7 @@ class LayoutScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    if (CacheHelper.getData(key: "token") == null) {
+                    if (CacheHelper.getData(key: "token") != null) {
                       layoutCubit.changeIndex(1);
                     } else {
                       context.pushNamed(Routes.loginScreen.name);

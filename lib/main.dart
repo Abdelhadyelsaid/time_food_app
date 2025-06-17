@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:time_food/Core/Const/colors.dart';
+import 'package:time_food/Core/Helper/dio_helper.dart';
 import 'package:time_food/Features/Auth/Cubit/auth_cubit.dart';
 import 'package:time_food/Features/Layout/Cubit/layout_cubit.dart';
 import 'package:time_food/Features/Profile/Cubit/account_cubit.dart';
@@ -14,6 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await CacheHelper.init();
+  await DioHelper.init();
   runApp(MyApp(appRouter: CustomRouter()));
 }
 

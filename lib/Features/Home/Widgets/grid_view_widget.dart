@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:time_food/Core/Const/colors.dart';
 import 'package:time_food/Features/Home/Cubit/home_cubit.dart';
-
 import '../../../Core/Shared Widgets/snackBar_widget.dart';
 import '../../../routing/routes.dart';
 

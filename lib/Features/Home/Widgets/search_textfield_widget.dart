@@ -1,14 +1,21 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../Notifications/Helper/notification_helper.dart';
 
 class SearchFieldWidget extends StatelessWidget {
   const SearchFieldWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
-      onTap: () {
-        // context.pushNamed(Routes.searchScreen.name);
+      onTap: () async{
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          NotificationHelper.scheduleNotificationAfter24Hours(context,"الاسماك",12);
+        });
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 25.w),

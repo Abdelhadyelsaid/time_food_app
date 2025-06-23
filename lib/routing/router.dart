@@ -5,6 +5,7 @@ import 'package:time_food/Features/Auth/View/Screens/register_screen.dart';
 import 'package:time_food/Features/Auth/View/Screens/splash_screen.dart';
 import 'package:time_food/Features/Home/View/add_product_screen.dart';
 import 'package:time_food/Features/Home/View/product_details_screen.dart';
+import 'package:time_food/Features/Home/View/search_screen.dart';
 import 'package:time_food/Features/Layout/View/layout_screen.dart';
 import 'package:time_food/routing/routes.dart';
 
@@ -19,7 +20,7 @@ class CustomRouter {
   );
 
   static GoRouter get router => _router;
-  static final List<GoRoute> _routes = [splashScreen, loginScreen,layoutScreen,productScreen,productDetailsScreen,addProductScreen,registercreen];
+  static final List<GoRoute> _routes = [splashScreen, loginScreen,layoutScreen,productScreen,productDetailsScreen,addProductScreen,registercreen,searchScreen];
 
   static final splashScreen = GoRoute(
     path: Routes.splashScreen.path,
@@ -70,6 +71,13 @@ class CustomRouter {
     name: Routes.registercreen.name,
     builder: (context, state) {
       return RegisterScreen();
+    },
+  );
+  static final searchScreen = GoRoute(
+    path: Routes.searchScreen.path,
+    name: Routes.searchScreen.name,
+    builder: (context, state) {
+      return SearchScreen();
     },
   );
 }

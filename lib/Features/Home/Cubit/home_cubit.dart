@@ -1,15 +1,13 @@
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:time_food/Core/Const/AppUrl.dart';
 import 'package:time_food/Core/Helper/dio_helper.dart';
-
 import '../Models/products_model.dart';
 import 'package:http_parser/http_parser.dart';
-
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -18,6 +16,7 @@ class HomeCubit extends Cubit<HomeState> {
   static HomeCubit get(context) => BlocProvider.of(context);
 
   AllProductsModel? allProductsModel;
+  TextEditingController controller = TextEditingController();
 
   Future<void> getAllProducts() async {
     emit(GetAllProductsLoadingState());

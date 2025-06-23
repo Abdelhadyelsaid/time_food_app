@@ -34,5 +34,8 @@ class Routes {
     name: "registercreen",
     path: "/registercreen",
   );
-
+  static final Route searchScreen = Route(
+    name: "searchScreen",
+    path: "/searchScreen",
+  );
 }

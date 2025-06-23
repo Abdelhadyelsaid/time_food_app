@@ -91,7 +91,8 @@ class LayoutScreen extends StatelessWidget {
                   onTap: () {
                     if (CacheHelper.getData(key: "token") != null) {
                       layoutCubit.changeIndex(1);
-                    } else {
+                    }
+                    else {
                       context.pushNamed(Routes.loginScreen.name);
                     }
                   },

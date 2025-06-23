@@ -8,6 +8,7 @@ import 'package:time_food/Core/Const/AppUrl.dart';
 import 'package:time_food/Core/Helper/dio_helper.dart';
 
 import '../Models/products_model.dart';
+import 'package:http_parser/http_parser.dart';
 
 part 'home_state.dart';
 
@@ -51,9 +52,9 @@ class HomeCubit extends Cubit<HomeState> {
       'name': name,
       'quantity': quantity,
       'startDate': startDate,
-      'endDate': endDate,
-      'sendNotification': sendNotification ? 'true' : 'false',
-      'image': await MultipartFile.fromFile(image.path),
+      'expirationDate': endDate,
+      'sendNotification': sendNotification,
+      'imageFile': await MultipartFile.fromFile(image.path,contentType: MediaType('image', 'jpeg',)),
     });
 
     await DioHelper.postData(
@@ -62,12 +63,14 @@ class HomeCubit extends Cubit<HomeState> {
           isJsonContentType: false,
         )
         .then((value) {
-          if (value.statusCode == 200) {
+      print("This is statusCode:${value.statusCode}");
+          if (value.statusCode == 201) {
             print(value.data);
+            print(value.statusCode);
             emit(AddProductSuccessState());
             print("Add product Successfully !");
           } else {
-            print("add product Error !");
+            print(value.data);
             emit(AddProductErrorState("something went wrong"));
           }
         })

@@ -84,7 +84,7 @@ class ProductDetailsScreen extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Image.network(
-       "${AppUrls.baseUrl}uploads/1750196607216-767688307.jpeg"?? "",
+       productDetails.image ?? "",
         height: 200,
         width: double.infinity,
         fit: BoxFit.cover,

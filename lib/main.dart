@@ -6,6 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:time_food/Core/Const/colors.dart';
 import 'package:time_food/Core/Helper/dio_helper.dart';
 import 'package:time_food/Features/Auth/Cubit/auth_cubit.dart';
+import 'package:time_food/Features/Home/Cubit/home_cubit.dart';
 import 'package:time_food/Features/Layout/Cubit/layout_cubit.dart';
 import 'package:time_food/Features/Profile/Cubit/account_cubit.dart';
 import 'package:time_food/firebase_options.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => AccountCubit()),
         BlocProvider(create: (context) => LayoutCubit()),
+        BlocProvider(create: (context) => HomeCubit()),
       ],
       child: ScreenUtilInit(
         minTextAdapt: true,

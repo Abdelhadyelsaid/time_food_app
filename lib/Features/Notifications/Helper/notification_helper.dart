@@ -5,38 +5,42 @@ import 'package:timezone/timezone.dart' as tz;
 
 class NotificationHelper {
   static void scheduleNotificationAfter24Hours(
-    context,
-    productName,
-    productId,
-  ) async {
+      context,
+      String productName,
+      DateTime expireDate,
+      ) async {
     await flutterLocalNotificationsPlugin.cancel(1001);
 
-    // 1. Android-specific notification details
-    const AndroidNotificationDetails androidDetails =
-        AndroidNotificationDetails(
-          'sse_notifications_channel',
-          'SSE Notifications',
-          channelDescription: 'Send Notification Before 24h',
-          importance: Importance.max,
-          priority: Priority.high,
-          styleInformation: DefaultStyleInformation(true, true),
-        );
+    // Android-specific notification details
+    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+      'sse_notifications_channel',
+      'SSE Notifications',
+      channelDescription: 'Send Notification Before 24h',
+      importance: Importance.max,
+      priority: Priority.high,
+      styleInformation: DefaultStyleInformation(true, true),
+    );
 
     const NotificationDetails notificationDetails = NotificationDetails(
       android: androidDetails,
     );
 
-    // 4. Schedule the notification
     tz.initializeTimeZones();
+
+    // 🧪 TEST MODE: Notify after 10 seconds
+    final scheduledDate = tz.TZDateTime.now(tz.local).add(const Duration(seconds: 10));
+
+    // ✅ REAL SCHEDULE: Uncomment this for actual 24-hour logic
+    // final scheduledDate = tz.TZDateTime.from(expireDate, tz.local).subtract(const Duration(hours: 24));
+
     await flutterLocalNotificationsPlugin.zonedSchedule(
       1,
       "تنبيه هام",
-      "${productName} علي وشك ان ينتهي صلاحيته بعد 24 ساعة الرجاء التخلص منه في اقرب وقتك حفاظا علي سلامتك.",
-      tz.TZDateTime.now(tz.local).add(const Duration(seconds: 10)),
+      "$productName على وشك أن تنتهي صلاحيته خلال 24 ساعة. الرجاء التخلص منه في أقرب وقت حفاظًا على سلامتك.",
+      scheduledDate,
       notificationDetails,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-
-      payload: 'product Expire',
+      payload: 'product_expire',
     );
   }
 }

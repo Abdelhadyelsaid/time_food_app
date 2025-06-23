@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:timezone/browser.dart' as tz;
 
 import '../../Notifications/Helper/notification_helper.dart';
 
@@ -14,7 +15,7 @@ class SearchFieldWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () async{
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          NotificationHelper.scheduleNotificationAfter24Hours(context,"الاسماك",12);
+          NotificationHelper.scheduleNotificationAfter24Hours(context,"الاسماك",DateTime.now().add(const Duration(seconds: 10)));
         });
       },
       child: Container(

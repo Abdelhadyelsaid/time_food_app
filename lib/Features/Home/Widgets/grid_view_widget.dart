@@ -83,11 +83,24 @@ class ImageGridScreen extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.network(
-                                item?.image ?? '',
-                                width: double.infinity,
-                                height: 80,
+                                item?.image ?? "",
+                                width: 100.w,
+                                height: 80.w,
                                 fit: BoxFit.cover,
-                              ),
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Container(
+                                    width: 100.w,
+                                    height: 80.w,
+                                    color: Colors.grey.shade200,
+                                    alignment: Alignment.center,
+                                    child: Icon(
+                                      Icons.broken_image,
+                                      size: 40,
+                                      color: Colors.grey,
+                                    ),
+                                  );
+                                },
+                              )
                             ),
                             SizedBox(height: 8),
                             Text(

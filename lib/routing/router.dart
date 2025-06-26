@@ -8,7 +8,6 @@ import 'package:time_food/Features/Home/View/product_details_screen.dart';
 import 'package:time_food/Features/Home/View/search_screen.dart';
 import 'package:time_food/Features/Layout/View/layout_screen.dart';
 import 'package:time_food/routing/routes.dart';
-
 import '../Features/Home/View/product_screen.dart';
 
 class CustomRouter {
@@ -48,7 +47,8 @@ class CustomRouter {
     path: Routes.productScreen.path,
     name: Routes.productScreen.name,
     builder: (context, state) {
-      return ProductEditorScreen();
+      final details = state.extra as Map<String, dynamic>;
+      return ProductEditorScreen(productDetails: details['productDetails'],);
     },
   );
   static final productDetailsScreen = GoRoute(

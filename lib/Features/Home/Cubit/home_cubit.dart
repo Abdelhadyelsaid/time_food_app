@@ -8,6 +8,7 @@ import 'package:time_food/Core/Const/AppUrl.dart';
 import 'package:time_food/Core/Helper/dio_helper.dart';
 import '../Models/products_model.dart';
 import 'package:http_parser/http_parser.dart';
+
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -53,7 +54,10 @@ class HomeCubit extends Cubit<HomeState> {
       'startDate': startDate,
       'expirationDate': endDate,
       'sendNotification': sendNotification,
-      'imageFile': await MultipartFile.fromFile(image.path,contentType: MediaType('image', 'jpeg',)),
+      'imageFile': await MultipartFile.fromFile(
+        image.path,
+        contentType: MediaType('image', 'jpeg'),
+      ),
     });
 
     await DioHelper.postData(
@@ -62,7 +66,7 @@ class HomeCubit extends Cubit<HomeState> {
           isJsonContentType: false,
         )
         .then((value) {
-      print("This is statusCode:${value.statusCode}");
+          print("This is statusCode:${value.statusCode}");
           if (value.statusCode == 201) {
             print(value.data);
             print(value.statusCode);
@@ -136,7 +140,7 @@ class HomeCubit extends Cubit<HomeState> {
       dataMap['sendNotification'] = sendNotification ? 'true' : 'false';
     }
     if (image != null) {
-      dataMap['image'] = await MultipartFile.fromFile(image.path);
+      dataMap['imageFile'] = await MultipartFile.fromFile(image.path);
     }
 
     final formData = FormData.fromMap(dataMap);

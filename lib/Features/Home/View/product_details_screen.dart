@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:time_food/Core/Const/AppUrl.dart';
 import 'package:time_food/Core/Const/colors.dart';
 import 'package:time_food/Features/Home/Models/products_model.dart';
 
@@ -84,11 +83,25 @@ class ProductDetailsScreen extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Image.network(
-       productDetails.image ?? "",
+        productDetails.image ?? "",
         height: 200,
         width: double.infinity,
         fit: BoxFit.cover,
-      ),
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            width: 100.w,
+            height: 80.w,
+            color: Colors.grey.shade200,
+            alignment: Alignment.center,
+            child: Icon(
+              Icons.broken_image,
+              size: 40,
+              color: Colors.grey,
+            ),
+          );
+        },
+      )
+
     );
   }
 

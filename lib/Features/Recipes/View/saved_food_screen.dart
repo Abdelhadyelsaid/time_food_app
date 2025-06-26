@@ -34,7 +34,7 @@ class SavedFoodScreen extends StatelessWidget {
           builder: (context, state) {
             var cubit = HomeCubit.get(context);
             return Padding(
-              padding:  EdgeInsets.only(bottom: .1.sh),
+              padding: EdgeInsets.only(bottom: .1.sh),
               child: ListView.builder(
                 itemCount: cubit.allProductsModel?.products.length,
                 itemBuilder: (context, index) {
@@ -45,9 +45,13 @@ class SavedFoodScreen extends StatelessWidget {
                       )
                       : InkWell(
                         onTap: () {
-                          context.pushNamed(Routes.productScreen.name,extra: {
-                            "productDetails":cubit.allProductsModel?.products[index]
-                          });
+                          context.pushNamed(
+                            Routes.productScreen.name,
+                            extra: {
+                              "productDetails":
+                                  cubit.allProductsModel?.products[index],
+                            },
+                          );
                         },
                         child: Container(
                           margin: EdgeInsets.symmetric(
@@ -70,15 +74,23 @@ class SavedFoodScreen extends StatelessWidget {
                               SizedBox(width: 20.w),
                               InkWell(
                                 onTap: () {
-                                  context.pushNamed(Routes.productScreen.name,extra: {
-                                    "productDetails":cubit.allProductsModel?.products[index]
-                                  });
+                                  context.pushNamed(
+                                    Routes.productScreen.name,
+                                    extra: {
+                                      "productDetails":
+                                          cubit
+                                              .allProductsModel
+                                              ?.products[index],
+                                    },
+                                  );
                                 },
                                 child: Icon(Icons.edit),
                               ),
                               Spacer(),
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: .02.sw),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: .02.sw,
+                                ),
                                 child: Text(
                                   item?.name ?? "",
                                   style: TextStyle(fontSize: 20.sp),
@@ -102,7 +114,7 @@ class SavedFoodScreen extends StatelessWidget {
                                     ),
                                   );
                                 },
-                              )
+                              ),
                             ],
                           ),
                         ),

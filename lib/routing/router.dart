@@ -19,7 +19,8 @@ class CustomRouter {
   );
 
   static GoRouter get router => _router;
-  static final List<GoRoute> _routes = [splashScreen, loginScreen,layoutScreen,productScreen,productDetailsScreen,addProductScreen,registercreen,searchScreen];
+  static final List<GoRoute> _routes = [
+    splashScreen, loginScreen,layoutScreen,productScreen,productDetailsScreen,addProductScreen,registercreen,searchScreen];
 
   static final splashScreen = GoRoute(
     path: Routes.splashScreen.path,

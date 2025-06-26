@@ -35,29 +35,6 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController forgetPasswordEmailController = TextEditingController();
   TextEditingController restorePasswordOtpController = TextEditingController();
 
-  /// OTP Timers
-
-  int start = 30;
-  Timer? timer;
-
-  void resetTimer() {
-    start = 30;
-    emit(TimerStopState());
-  }
-
-  void startTimer() {
-    emit(TimerStartState());
-    timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
-      if (start == 0) {
-        timer.cancel();
-        // start = 60;
-        emit(TimerStopState());
-      } else {
-        start = start - 1;
-        emit(TimerMinusState());
-      }
-    });
-  }
 
   Future<void> signUp(
     String email,

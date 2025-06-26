@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -8,16 +7,13 @@ import 'package:time_food/Core/Helper/dio_helper.dart';
 import 'package:time_food/Features/Auth/Cubit/auth_cubit.dart';
 import 'package:time_food/Features/Home/Cubit/home_cubit.dart';
 import 'package:time_food/Features/Layout/Cubit/layout_cubit.dart';
-import 'package:time_food/Features/Profile/Cubit/account_cubit.dart';
 import 'package:time_food/firebase_options.dart';
 import 'package:time_food/routing/router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'Core/Helper/cache_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'Features/Notifications/Helper/local_notification.dart';
-import 'Features/Notifications/Helper/notification_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,7 +41,6 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
-        BlocProvider(create: (context) => AccountCubit()),
         BlocProvider(create: (context) => LayoutCubit()),
         BlocProvider(create: (context) => HomeCubit()),
       ],

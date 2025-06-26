@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 extension ErrorSnackbar on BuildContext {
-  /// Shows a red snackbar with an error icon and your [message].
   void showErrorSnackBar(String message, {Color color = Colors.red}) {
     final snackBar = SnackBar(
       behavior: SnackBarBehavior.floating,

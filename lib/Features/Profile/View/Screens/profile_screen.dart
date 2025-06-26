@@ -29,7 +29,7 @@ class HomeAccountScreen extends StatelessWidget {
                     title: " خدمة العملاء",
                     svgIcon: 'assets/icons/arrow_icon.svg',
                     onTap: () async {
-                      await launchUrl(Uri.parse("https://wa.me/201259746957"));
+                      await launchUrl(Uri.parse("https://wa.me/201159746957"));
                     },
                   ),
                   SizedBox(height: .02.sh),

@@ -8,7 +8,7 @@ class DioHelper {
   static init() {
     debugPrint('dio helper run');
     dio = Dio(BaseOptions(
-      // receiveTimeout: const Duration(seconds: 500),
+      receiveTimeout: const Duration(seconds: 500),
       validateStatus: (_) => true,
       baseUrl: AppUrls.baseUrl,
       receiveDataWhenStatusError: true,

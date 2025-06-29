@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -19,6 +20,12 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final _picker = ImagePicker();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+  var userNameController = TextEditingController();
+  var phoneController = TextEditingController();
+  var stateController = TextEditingController();
+  var ageController = TextEditingController();
 
   File? _profileImage;
   String? _username, _email, _phone, _state, _gender, _age, _password;
@@ -75,6 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Column(
                   children: [
                     TextFormField(
+                      controller:userNameController,
                       decoration: InputDecoration(
                         labelText: 'اسم المستخدم',
                         border: OutlineInputBorder(
@@ -89,6 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 15.h),
                     TextFormField(
+                      controller:emailController,
                       decoration: InputDecoration(
                         labelText: 'البريد الالكتروني',
                         border: OutlineInputBorder(
@@ -103,6 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 15.h),
                     TextFormField(
+                      controller:phoneController,
                       decoration: InputDecoration(
                         labelText: 'رقم الهاتف',
                         border: OutlineInputBorder(
@@ -115,6 +125,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 15.h),
                     TextFormField(
+                      controller:stateController,
                       textAlign: TextAlign.right,
                       decoration: InputDecoration(
                         labelText: 'المحافظة',
@@ -129,6 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 15.h),
                     TextFormField(
+                      controller:ageController,
                       textAlign: TextAlign.right,
                       decoration: InputDecoration(
                         labelText: 'العمر',
@@ -196,6 +208,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     SizedBox(height: 15.h),
                     TextFormField(
+                      controller:passwordController,
                       decoration: InputDecoration(
                         labelText: 'كلمة المرور',
                         border: OutlineInputBorder(
@@ -234,29 +247,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 backgroundColor: cPrimaryColor,
                               ),
                               onPressed: () {
-                                if (_email != null &&
-                                    _email!.isNotEmpty &&
-                                    _phone != null &&
-                                    _phone!.isNotEmpty &&
-                                    _username != null &&
-                                    _username!.isNotEmpty &&
-                                    _password != null &&
-                                    _password!.isNotEmpty &&
-                                    _state != null &&
-                                    _state!.isNotEmpty &&
-                                    _age != null &&
-                                    _gender != null &&
-                                    _gender!.isNotEmpty) {
                                   cubit.signUp(
-                                    _email!,
-                                    _phone!,
-                                    _username!,
-                                    _password!,
-                                    _state!,
-                                    _age!,
-                                    _gender!,
+                                    emailController.text,
+                                    phoneController.text ,
+                                    userNameController.text,
+                                    passwordController.text ,
+                                    stateController.text ,
+                                    ageController.text,
+                                    _gender ?? "",
                                   );
-                                }
                               },
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(

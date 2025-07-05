@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 import 'package:time_food/Core/Const/colors.dart';
-import '../../../Core/Helper/cache_helper.dart';
-import '../../../routing/routes.dart';
+// import '../../../Core/Helper/cache_helper.dart';
+// import '../../../routing/routes.dart';
 import '../Cubit/layout_cubit.dart';
 
 class LayoutScreen extends StatelessWidget {
@@ -29,11 +29,7 @@ class LayoutScreen extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    if (CacheHelper.getData(key: "token") != null) {
-                      layoutCubit.changeIndex(3);
-                    } else {
-                      context.pushNamed(Routes.loginScreen.name);
-                    }
+                  layoutCubit.changeIndex(3);
                   },
                   child: Container(
                     height: 50,
@@ -59,11 +55,7 @@ class LayoutScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    if (CacheHelper.getData(key: "token") != null) {
-                      layoutCubit.changeIndex(2);
-                    } else {
-                      context.pushNamed(Routes.loginScreen.name);
-                    }
+                    layoutCubit.changeIndex(2);
                   },
                   child: Container(
                     height: 50,
@@ -89,12 +81,7 @@ class LayoutScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    if (CacheHelper.getData(key: "token") != null) {
-                      layoutCubit.changeIndex(1);
-                    }
-                    else {
-                      context.pushNamed(Routes.loginScreen.name);
-                    }
+                  layoutCubit.changeIndex(1);
                   },
                   child: Container(
                     height: 50,
